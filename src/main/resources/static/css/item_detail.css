@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/* ========================================
+    商品詳細ページのスタイル
+   ======================================== */
+
+.item-detail {
+  display: flex;
+  /* 中央揃え */
+  justify-content: center;
+}
+.item-icondetail img {
+  margin: auto;
+  display: block;
+  border-radius: 30px;
+  width: 324px;
+  height: 400px;
+  padding: 0 0 15px 0;
+}
+
+.item-intro {
+  width: 400px;
+  padding-top: 50px;
+  padding-left: 50px;
+  font-size: 20px;
+}
+
+.item-hedding {
+  font-weight: bold;
+  font-size: 17px;
+  text-align: left;
+}
+.item-size {
+  /* text-align: center; */
+  font-size: 15px;
+  margin-bottom: 20px;
+  padding: 0 200px 0 200px;
+}
+
+.price {
+  color: black;
+  font-size: 17px;
+}
+.intax{
+	background: linear-gradient(transparent 50%, #FFDBC9 50%);
+}
+
+#hiddenPrice{
+	display: none;
+}
+
+.item-toppings {
+  font-size: 15px;
+  padding: 0 200px 0 200px;
+}
+
+.item-topping {
+  margin-right: 10px;
+}
+
+.item-hedding-quantity {
+  margin-left: 200px;
+}
+
+.item-quantity {
+  text-align: center;
+  font-size: 15px;
+}
+
+.item-quantity-selectbox {
+  padding: 0 300px 0 300px;
+}
+#selectIntaxPrice{
+	font-size: 35px;
+}
+
+.item-total-price {
+  font-size: 35px;
+  margin: auto;
+}
+.item-total-price2 {
+  font-size: 25px;
+  margin: auto;
+}
+.item-cart-btn {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.top-wrapper {
+  background-color: #f7f7f7;
+  text-align: center;
+}

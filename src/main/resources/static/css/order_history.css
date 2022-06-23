@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* ========================================
+    注文履歴のページのスタイル
+   ======================================== */
+   
+   
+.history-img img {
+  margin: auto;
+  display: block;
+  border-radius: 30px;
+  width: 150px;
+  height: 230px;
+  padding: 0 0 15px 0;
+}
+
+.history {
+	font-size: 18px;
+	text-align: center;
+}
+
+.history_btn {
+	color: #fff;
+	background-color: #FF8A80;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 80vh;
+	border: 1px solid #fff;
+	padding: 10px;
+	
+}
+
+.orderHistoryName {
+	font-size: 17px;
+}
+.historyTotal {
+	font-size: 22px;
+	background: linear-gradient(transparent 50%, #FFDBC9 50%);
+}
+
+.order-history-table{
+	border-radius: 15px;
+	margin-bottom: 50px;
+}
+

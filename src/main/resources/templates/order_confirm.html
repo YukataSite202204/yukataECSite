@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<!-- Import Materialize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<!-- Import Font Wesome -->
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+	<!-- icon -->
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico"
+		th:href="@{../img/favicon.ico}" />
+	<link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+	<link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+	<link rel="stylesheet" th:href="@{../css/common.css}" />
+	<link rel="stylesheet" th:href="@{../css/header.css}" />
+	<link rel="stylesheet" th:href="@{../css/footer.css}" />
+	<link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+	<link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+	<link rel="stylesheet" th:href="@{../css/login.css}" />
+	<link rel="stylesheet" th:href="@{../css/item_list.css}" />
+	<link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+	<link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+	<link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+	<link rel="stylesheet" th:href="@{../css/responsive.css}" />
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>注文内容確認 | らくらく浴衣</title>
+</head>
+
+<body>
+	<header>
+		<div th:insert="top :: frag_header"></div>
+	</header>
+
+
+	<div class="top-wrapper">
+		<div class="container">
+			<h1 class="page-title">
+				<span class="order-confirm-title">注文内容確認</span>
+			</h1>
+			<!-- table -->
+			<div class="row">
+				<table class="striped yellow lighten-5 order-confirm-table">
+					<thead>
+						<tr>
+							<th class="cart-table-th">商品名</th>
+							<th class="cart-table-th">価格 (税抜)</th>
+							<th class="cart-table-th">数量</th>
+							<th class="cart-table-th">小計　(税抜)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="orderItem : ${order.orderItemList}">
+							<td class="cart-item-name">
+								<div class="cart-item-icon">
+									<img th:src="@{/img/}+${orderItem.item.imagePath}">
+								</div>
+								<span th:text="${orderItem.item.name}">ハワイアンパラダイス</span>
+							</td>
+							<td>
+								<div class="text-center cart-item-name"
+									th:text="${#numbers.formatInteger(orderItem.item.price,2,'COMMA')}+円">
+									価格XXX円
+								</div>
+							</td>
+							<td>
+								<div class="cart-item-name" th:text="${orderItem.quantity}">3個</div>
+							</td>
+							<td>
+								<div class="cart-item-name"
+									th:text="${#numbers.formatInteger(orderItem.getSubTotal(), 3, 'COMMA') }+円">
+									小計XXX円</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row cart-total-price">
+				<div>
+					<span class="order-confirm-text">&nbsp;&nbsp;消費税：<span
+							th:text="${#numbers.formatInteger(tax, 3, 'COMMA') }">消費税：8,000円</span>円&nbsp;&nbsp;
+					</span>
+				</div>
+				<div>
+					<span class="order-confirm-text">&nbsp;&nbsp;ご注文金額合計：<span
+							th:text="${#numbers.formatInteger(total, 3, 'COMMA') }">ご注文金額合計：38,000円
+							(税込)</span>円&nbsp;&nbsp;
+					</span>
+				</div>
+			</div>
+
+
+
+			<form th:action="@{/order/order}" method="post" th:object="${orderForm}" id="orderForm"
+				class="orderConfirmForm">
+				<h2 class="page-title">
+					<span class="order-confirm-title">お届け先情報</span>
+				</h2>
+				<div class="order-confirm-delivery-info">
+					<div class="row">
+						<div class="input-field">
+
+							<input id="name" type="text" name="destinationName" th:field="*{destinationName}"> <span
+								th:errors="*{destinationName}" style="color: red"></span><label for="name">お名前</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field">
+
+							<input id="email" type="text" name="destinationEmail" th:field="*{destinationEmail}"><span
+								th:errors="*{destinationEmail}" style="color: red"></span> <label
+								for="email">メールアドレス</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field">
+
+							<input name="destinationZipcode" id="zipcode" type="text" maxlength="8" min="7"
+								th:field="*{destinationZipcode}" /> <span th:errors="*{destinationZipcode}"
+								style="color: red"></span><label for="zipcode">郵便番号</label>
+							<button class="btn red lighten-3" type="button" id="get_address_btn">
+								<span>住所検索</span>
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field">
+
+							<input id="address" type="text" name="destinationAddress" th:field="*{destinationAddress}">
+							<span th:errors="*{destinationAddress}" style="color: red"></span><label
+								for="address">住所</label>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="input-field">
+
+							<input id="tel" type="tel" name="destinationTel" maxlength="13"
+								th:field="*{destinationTel}" /><span th:errors="*{destinationTel}"
+								style="color: red"></span> <label for="tel">電話番号</label>
+						</div>
+					</div>
+					<div class="row order-confirm-delivery-datetime">
+						<div class="input-field">
+
+							<input id="deliveryDate" type="date" name="deliveryDate" th:field="*{deliveryDate}" /> <span
+								th:text="${deliveryTImeError}" style="color: red"></span> <span
+								th:errors="*{deliveryDate}" style="color: red"></span> <label for="address">配達日時</label>
+						</div>
+
+						<label class="order-confirm-delivery-time"> <span
+							th:errors="*{deliveryTime}" style="color: red"></span> <input
+							name="deliveryTime" type="radio" value="10" checked="checked"
+							th:field="*{deliveryTime}" /> <span>10時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="11" /> <span>11時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="12" checked="checked" />
+							<span>12時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="13" /> <span>13時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="14" /> <span>14時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="15" /> <span>15時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="16" /> <span>16時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="17" /> <span>17時</span>
+						</label> <label class="order-confirm-delivery-time"> <input
+							name="deliveryTime" type="radio" value="18" /> <span>18時</span>
+						</label>
+					</div>
+				</div>
+
+				<h2 class="page-title">
+					<span class="order-confirm-title">お支払い方法</span>
+				</h2>
+				<div class="row order-confirm-payment-method">
+					<span> <label class="order-confirm-payment-method-radio">
+							<input name="paymentMethod" type="radio" value="1" checked="checked" /> <span>代金引換</span>
+						</label> <label class="order-confirm-payment-method-radio"> <input name="paymentMethod"
+								type="radio" value="2" /> <span>クレジットカード</span>
+						</label>
+					</span>
+				</div>
+				<!-- クレジットカード登録ボタン -->
+				<div class="creditPay-btn" id="creditPayBtn">
+					<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+						data-key="pk_test_51L7U0DJUEdTQpHI8ptG4t33k8JaN0ktp1ETSz80M4ExSfIHaCQcrS7OxmGTNQKRoyE7cmiesHw8dvkAOSTI07JNi00J1GtZ4Hm"
+						data-name="らくらく浴衣" data-description="" data-amount="" data-currency="jpy"
+						data-label="この内容で注文する"></script>
+					<div>クレジットカード登録と同時に決済が完了します。</div>
+				</div>
+
+				<input type="hidden" name="userId" th:value="${order.userId}">
+
+				<div class="row order-confirm-btn">
+					<button type="button" class="btn red lighten-3" id="order-btn">
+						<span>この内容で注文する</span>
+					</button>
+				</div>
+			</form>
+			<div>
+				<br> <br> <br>
+			</div>
+		</div>
+		<!-- end container -->
+	</div>
+	<!-- end top-wrapper -->
+
+	<!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+	<footer>
+		<div th:insert="top :: frag_footer"></div>
+	</footer>
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script th:src="@{/js/order.js}"></script>
+	<!-- <script th:src="@{/js/script.js}"></script> -->
+	<!-- ▲ jquery ▲ -->
+</body>
+
+</html>

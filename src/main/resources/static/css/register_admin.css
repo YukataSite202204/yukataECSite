@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.register-page {
+  width: 600px;
+}
+
+.register-admin-btn {
+	margin-top:25px;
+  text-align: center;
+}
+
+/* ▼ 追記 ▼ */
+.error_text{
+	color: red;
+}
+
+.password-attention{
+	font-size: 12px;
+	color: #808080;
+}
+
+.register-confirmation-page p{
+	padding: 4px;
+    border-bottom: 1px solid #FF8A80;
+}
+
+#get_address_btn{
+	margin-bottom: 10px;
+}
+
+.resetbtn{
+	border: none;
+	color: white;
+}
+
+.register-admin-form{
+	background-color: white;
+	padding: 30px 30px 10px 30px;
+	border-radius: 15px;
+}
+
+.register-admin-top-wrapper{
+	padding-bottom: 10px;
+}
+

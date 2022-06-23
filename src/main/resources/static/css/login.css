@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.login-page {
+  width: 600px;
+}
+
+.login-btn {
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* ▼ 追記 ▼ */
+.error_text{
+	color: red;
+	padding-bottom: 15px;
+}
+
+.top-wrapper{
+	background-color: #FFF3E1;
+}
+
+.login-form{
+	background-color: white;
+	padding: 10px 30px;
+	border-radius: 15px;
+	margin-top: 10px;
+}
+
+.login-to-registryform{
+	padding: 10px 0;
+}
+
+

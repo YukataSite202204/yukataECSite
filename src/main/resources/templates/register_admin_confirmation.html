@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Import Google Icon Font?? -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Import Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!-- Import Font Wesome -->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico"
+    th:href="@{../img/favicon.ico}" />
+  <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="stylesheet" th:href="@{../css/common.css}" />
+  <link rel="stylesheet" th:href="@{../css/header.css}" />
+  <link rel="stylesheet" th:href="@{../css/footer.css}" />
+  <link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+  <link rel="stylesheet" th:href="@{../css/register_admin_confirmation.css}" />
+  <link rel="stylesheet" th:href="@{../css/login.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+  <link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+  <link rel="stylesheet" th:href="@{../css/responsive.css}" />
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会員登録内容確認 | らくらく浴衣</title>
+</head>
+
+<body>
+  <!-- ▼ ヘッダー　▼ -->
+  <header>
+    <div th:insert="top :: frag_header"></div>
+  </header>
+
+  <!-- ▼ 会員登録確認欄　▼ -->
+  <div class="top-wrapper register-admin-confirmation-top-wrapper">
+  <h2 class="page-title">
+    <span class="order-confirm-title">会員登録ページ</span>
+    </h2>
+    <div class="container">
+      <div class="row register-confirmation-page">
+      <div class="register-admin-confirmation-form">
+        <h1 class="register-admin-confirmation-h1">こちらの内容で登録してよろしいですか？</h1>
+        <form th:action="@{/user/registry}" method="post" th:object="${userForm}">
+          <div th:each="user : ${registrationDetails}">
+            <div class="input-field col s6">
+              <div>姓</div>
+              <p th:text="${user.lastName}"></p>
+              <input type="hidden" th:name="*{lastName}" th:field="*{lastName}">
+            </div>
+            <div class="input-field col s6">
+              <div>名</div>
+              <p th:text="${user.firstName}"></p>
+              <input type="hidden" th:name="*{firstName}" th:field="*{firstName}">
+            </div>
+            <div>メールアドレス</div>
+            <p th:text="${user.email}"></p>
+            <input type="hidden" th:name="*{email}" th:field="*{email}">
+            <div>郵便番号</div>
+            <p th:text="${user.zipcode}"></p>
+            <input type="hidden" th:name="*{zipcode}" th:field="*{zipcode}">
+            <div>住所</div>
+            <p th:text="${user.address}"></p>
+            <input type="hidden" th:name="*{address}" th:field="*{address}">
+            <div>電話番号</div>
+            <p th:text="${user.telephone}"></p>
+            <input type="hidden" th:name="*{telephone}" th:field="*{telephone}">
+            <div>パスワード</div>
+            <p style="color:#808080;">※セキュリティのため非表示</p>
+            <input type="hidden" th:name="*{password}" th:field="*{password}">
+          </div>
+          <div class="row register-admin-confirmation-btn">
+            <button class="btn red lighten-3" type="button" id="registration-btn">
+              <span>登録<i class="material-icons right">done</i></span>
+            </button>
+          </div>
+        </form>
+        <button class="btn red lighten-3" type="button" onclick=history.back()>
+          <span>修正<i class="material-icons right">done</i></span>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+  <footer>
+    <div th:insert="top :: frag_footer"></div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script th:src="@{../js/doubleSubmit.js}"></script>
+</body>
+
+</html>

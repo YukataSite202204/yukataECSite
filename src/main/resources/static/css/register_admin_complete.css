@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.register-complete-page {
+  width: 600px;
+  height: 200px;
+}
+
+.register-complete-page h1{
+	font-size: 20px;
+}
+
+.register-complete-btn{
+	margin: 20px 0;
+}
+

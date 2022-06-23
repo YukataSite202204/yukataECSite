@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Import Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <!-- Import Font Wesome -->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico"
+    th:href="@{../img/favicon.ico}" />
+  <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="stylesheet" th:href="@{../css/common.css}" />
+  <link rel="stylesheet" th:href="@{../css/header.css}" />
+  <link rel="stylesheet" th:href="@{../css/footer.css}" />
+  <link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+  <link rel="stylesheet" th:href="@{../css/login.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+  <link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+  <link rel="stylesheet" th:href="@{../css/responsive.css}" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>商品一覧 | らくらく浴衣</title>
+</head>
+
+<body id="page-top">
+  <header>
+    <div th:insert="top :: frag_header"></div>
+  </header>
+  <!-- search form -->
+  <div class="search-wrapper">
+    <div class="container">
+      <form method="get" class="search-form" th:action="@{/yukata/search}" id="itemListSearch">
+        <input type="text" name="name" class="search-name-input" th:value="${session.name}" />
+        <input type="hidden" th:value="1" name="nowPage">
+        <button class="btn search-btn red lighten-3">
+          <span>検　索</span>
+        </button>
+        <span>&nbsp; &nbsp; &nbsp; &nbsp;</span>
+        <button class="btn search-btn red lighten-3" id="searchReset">
+      		<span>検索結果クリア</span>
+       </button>
+      </form>
+      <div th:if="${session.message}" th:text="${session.message}" id="searchResult" class="search-form"></div>
+      <br>
+      <form th:action="@{/yukata/order}" method="get" name="order" class="search-form" th:object="${itemSearchForm}">
+        <input type="hidden" name="name" th:field=*{name}>
+        <input type="hidden" name="nowPage" th:value="1">
+        <select id="order" class="browser-default" name="order" th:field="*{order}">
+          <option value="0">値段が安い順</option>
+          <option value="1">値段が高い順</option>
+          <option value="2">商品名昇順</option>
+          <option value="3">商品名降順</option>
+          <option value="4">発売日が古い順</option>
+          <option value="5">発売日が新しい順</option>
+        </select>
+        <button class="btn search-btn red lighten-3">
+          <span>並べ替え</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- item list -->
+  <div class="item-wrapper">
+    <div class="container">
+      　　<div class="recomend" th:text="${recomend}"></div>
+      <div class="items">
+        <span id="autoComplete1" class="autoComplete" th:text="${session.nameList}"></span>
+        <span id="autoComplete2" class="autoComplete" th:text="${session.kanaList}"></span>
+        <div th:each="item : ${itemList}" id="itemList">
+          <div class="item">
+            <div class="item-icon zoom">
+              <a th:href="@{/yukata/detail?id=} + ${item.id}">
+                <img th:src="@{'/img/'} + ${item.imagePath}" src="img" />
+              </a>
+            </div>
+            <a th:href="@{/yukata/detail?id=} + ${item.id}">
+              <span th:text="${item.name}" id="itemName"></span>
+            </a><br />
+            <div>
+              <span th:text="${#numbers.formatInteger(item.price * 1.1, 3, 'COMMA') + '円(税込)'}" class="price" id="intax"></span>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container"> -->
+  <div class="to-page-top">
+    　 　<a href="#page-top"><img class="to-page-top-img" src="img/pagetop.png" th:src="@{/img/to_top.png}" alt=""></a>
+  </div>
+
+  <!-- ▼ ページングボックス　▼ -->
+  <div class="items">
+    <div class="pagingbox">
+      <form class="pagingbox-form" th:action="@{/yukata/page}" method="get">
+        <input type="hidden" name="nowPage" th:value="${nowPage}">
+        <input type="hidden" name="boxFlg" th:value="${boxFlg}">
+        <input type="hidden" name="calledSource" th:value="${session.calledSource}">
+        <button class="btn red lighten-3" name="beforeBtnFlg" value="1"
+          th:styleappend="${nowPage}==null OR ${nowPage}==1 ? 'display:none;'">前へ</button>
+        <span th:each="boxSize : ${session.boxSizeList}">
+          <button class="btn red lighten-3" name="boxNumber" th:text="${boxSize}" th:value="${boxSize}"></button>
+        </span>
+        <button class="btn red lighten-3" name="nextBtnFlg" value="1"
+          th:styleappend="${nowPage}==${session.boxSizeMax} ? 'display:none;'">次へ</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+  <footer>
+    <div th:insert="top :: frag_footer"></div>
+  </footer>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script th:src="@{/js/itemList.js}"></script>
+  <script th:src="@{/js/toPageTop.js}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.register-confirmation-page {
+  width: 600px;
+}
+
+.register-admin-confirmation-btn {
+  text-align: center;
+}
+
+/* ▼ 追記 ▼ */
+.register-confirmation-page p{
+	padding: 4px;
+    border-bottom: 1px solid #FF8A80;
+}
+
+.register-admin-confirmation-form{
+	background-color: white;
+	padding: 10px 30px 30px 30px; 
+	border-radius: 15px;
+}
+
+.register-admin-confirmation-top-wrapper{
+	padding-bottom: 10px;
+}
+
+.register-admin-confirmation-h1{
+	font-size: 18px;
+}
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!-- Import Materialize CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+<!-- Import Font Wesome -->
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+	rel="stylesheet" />
+<!-- icon -->
+<link rel="shortcut icon" type="image/vnd.microsoft.icon"
+	href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+<link rel="icon" type="image/x-icon" href="../static/img/favicon.ico"
+	th:href="@{../img/favicon.ico}" />
+<link rel="apple-touch-icon" sizes="180x180"
+	href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+<link rel="stylesheet" th:href="@{../css/common.css}" />
+<link rel="stylesheet" th:href="@{../css/header.css}" />
+<link rel="stylesheet" th:href="@{../css/footer.css}" />
+<link rel="stylesheet" th:href="@{../css/order_history.css}" />
+<link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+<link rel="stylesheet" th:href="@{../css/login.css}" />
+<link rel="stylesheet" th:href="@{../css/item_list.css}" />
+<link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+<link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+<link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+<link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+<link rel="stylesheet" th:href="@{../css/responsive.css}" />
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>注文履歴 | らくらく浴衣</title>
+</head>
+
+<body>
+	<header>
+		<div th:insert="top :: frag_header"></div>
+	</header>
+
+	<div class="top-wrapper">
+		<div class="container">
+			<h1 class="page-title">
+			<span class="order-confirm-title">注文履歴確認画面</span>
+			</h1>
+			<!-- table -->
+			<div class="row">
+				<table class="striped yellow lighten-5 order-history-table">
+					<thead>
+						<tr>
+							<th class="cart-table-th th2">注文日</th>
+							<th class="cart-table-th th2">商品名</th>
+							<th class="cart-table-th th2">値段（税抜）/数量</th>
+							<th class="cart-table-th th2">合計金額（税込）</th>
+							<th class="cart-table-th th2">配送状況</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="orderHistory : ${orderHistory}">
+							<td class="cart-item-name td2"><div class="history">
+									<span class="history" th:text="${orderHistory.orderDate}"></span>
+								</div></td>
+							<td class="cart-item-name td2">
+								<div class="history-img">
+									<img th:src="@{/img/}+${orderHistory.imagePath}" />
+								</div> <span class="orderHistoryName"
+								th:text="${orderHistory.itemName}"></span>
+							</td>
+							<td class="td2"><div class="history">
+									価格:<span
+										th:text="${#numbers.formatInteger(orderHistory.price, 3, 'COMMA') }"></span>円
+								</div>
+								<div class="history">
+									数量：<span th:text="${orderHistory.quantity}"></span>
+								</div></td>
+							<td class="td2">
+								<div class="history">
+									<div class="historyText">合計金額</div>
+									<span class=" historyTotal"><span
+										class="history historyTotal"
+										th:text="${#numbers.formatInteger(orderHistory.getTotalPrice, 3, 'COMMA') }"></span>円</span>
+								</div>
+							</td>
+							<td class="td2">
+								<div class="history historyText">
+									<div th:if="${orderHistory.status} == 1">未入金</div>
+									<div th:if="${orderHistory.status} == 2">入金済</div>
+									<div th:if="${orderHistory.status} == 3">発送済</div>
+									<div th:if="${orderHistory.status} == 4">配送完了</div>
+									<div th:if="${orderHistory.status} == 9">キャンセル</div>
+									<!-- ここに商品レビュー　　もしくはもう一度購入ボタンをつける? -->
+									<form th:action="@{/yukata/detail}" method="post">
+										<input type="hidden" name="id"
+											th:value="${orderHistory.itemId}">
+										<button class="history_btn" type="submit">もう一度購入する</button>
+									</form>
+								</div>
+							</td>
+					
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<!-- end container -->
+	</div>
+	<!-- end top-wrapper -->
+
+	<!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+	<footer>
+		<div th:insert="top :: frag_footer"></div>
+	</footer>
+
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+</html>

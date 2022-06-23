@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Import Google Icon Font?? -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Import Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!-- Import Font Wesome -->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico"
+    th:href="@{../img/favicon.ico}" />
+  <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="stylesheet" th:href="@{../css/common.css}" />
+  <link rel="stylesheet" th:href="@{../css/header.css}" />
+  <link rel="stylesheet" th:href="@{../css/footer.css}" />
+  <link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+  <link rel="stylesheet" th:href="@{../css/login.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+  <link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+  <link rel="stylesheet" th:href="@{../css/responsive.css}" />
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>会員登録 | らくらく浴衣</title>
+</head>
+
+<body>
+  <!-- ▼ ヘッダー ▼ -->
+  <header>
+    <div th:insert="top :: frag_header"></div>
+  </header>
+
+  <!-- ▼ 会員登録フォーム ▼ -->
+  <div class="top-wrapper register-admin-top-wrapper">
+   <h2 class="page-title">
+    <span class="order-confirm-title">会員登録ページ</span>
+    </h2>
+    <div class="container">
+      <div class="row register-page">
+        <form class="register-admin-form" th:action="@{/user/registryConfirmation}" method="post" th:object="${userForm}">
+          <div>氏名</div>
+          <div th:if="${#fields.hasErrors('nameValid')}" th:errors="*{nameValid}" class="error_text"></div>
+          <div class="input-field col s6">
+            <div>姓</div>
+            <input type="text" th:field="*{lastName}" placeholder="楽々">
+          </div>
+          <div class="input-field col s6">
+            <div>名</div>
+            <input type="text" th:field="*{firstName}" placeholder="花子">
+          </div>
+          <div>メールアドレス</div>
+          <div class="error_text" th:text="${emailDuplicateError}"></div>
+          <div th:errors=*{email} class="error_text"></div>
+          <input type="text" th:field="*{email}" placeholder="rakuraku_yukata@rakuraku.com">
+          <div>郵便番号</div>
+          <div th:errors=*{zipcode} class="error_text"></div>
+          <input type="text" th:field="*{zipcode}" placeholder="160-0022">
+          <button class="btn red lighten-3" type="button" id="get_address_btn">
+            <span>住所検索</span>
+          </button>
+          <div>住所</div>
+          <div th:errors=*{address} class="error_text"></div>
+          <input type="text" th:field="*{address}" placeholder="東京都新宿区新宿4-3-25 TOKYU REIT新宿ビル8F">
+          <div>電話番号</div>
+          <div th:errors=*{telephone} class="error_text"></div>
+          <input type="text" th:field="*{telephone}" placeholder="090-1111-2222">
+          <div>パスワード</div>
+          <div class="password-attention">※8文字以上16文字以内</div>
+          <div class="password-attention">※半角数字、半角英字大文字・小文字、記号（._-） のみ使用可能</div>
+          <div th:errors=*{password} class="error_text"></div>
+          <input type="password" th:field="*{password}" id="password">
+          <div>確認用 パスワード</div>
+          <div id="checkPasswordMessage" class="error_text"></div>
+          <input type="password" id="checkPassword">
+          <div class="row register-admin-btn">
+            <button class="btn red lighten-3 resetbtn" type="button">
+              <input class="resetbtn red lighten-3" type="reset" value="リセット">
+            </button>
+            <button class="btn red lighten-3" type="submit" id="register_admin_btn" disabled>
+              <span>登録<i class="material-icons right">done</i></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+  <footer>
+    <div th:insert="top :: frag_footer"></div>
+  </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{../js/checkPassword.js}"></script>
+<script th:src="@{/js/order.js}"></script>
+
+</html>

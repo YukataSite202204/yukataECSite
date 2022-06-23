@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+.order-confirm-delivery-info {
+	margin: 0 200px 0 200px;
+}
+
+.order-confirm-delivery-datetime {
+	text-align: center;
+}
+
+.order-confirm-delivery-time {
+	margin-right: 10px;
+}
+
+.order-confirm-payment-method {
+	text-align: center;
+}
+
+.order-confirm-payment-method-radio {
+	margin-right: 10px;
+}
+
+/**以下追加**/
+.order-confirm-text {
+	font-size: 30px;
+	border-bottom: 4px solid  #EF9A9A;
+}
+
+/* ========================================
+    ページタイトルに花アイコン・フォント変え
+   ======================================== */
+
+.order-confirm-title{
+  font-family: 'Noto Serif JP', serif !important;
+  font-weight: bold;
+}
+.order-confirm-title:before,.order-confirm-title:after{
+  content:' ';
+  display:inline-block;
+  width:50px;
+  height:50px;
+  background-image: radial-gradient(#E7556A 25%, transparent 0),
+    radial-gradient(#E7556A 25%, transparent 0),
+    radial-gradient(#E7556A 25%, transparent 0),
+    radial-gradient(#E7556A 25%, transparent 0),
+    radial-gradient(#E7556A 25%, transparent 0);
+  background-position: 50% 0, 5% 40%, 95% 40%, 23% 95%, 78% 95%;
+  background-size: 30px 30px;
+  background-repeat:no-repeat;
+}
+
+.credit-text {
+	font-size: 30px;
+}
+
+.credit-text2 {
+	font-size: 20px;
+}
+
+.credit-btn {
+	margin: 15px 0;
+}
+
+.creditPay-btn {
+	display: none;
+	margin: 15px 0;
+}
+
+button.stripe-button-el, button.stripe-button-el>span {
+	background-color: #EF9A9A !important;
+	background-image: none;
+}
+
+.orderConfirmForm {
+	background-color: white; 
+	padding: 10px 0;
+	border-radius: 15px;
+}
+
+.order-confirm-table{
+	border-radius: 15px;
+	width: 1000px;
+	margin-left: auto;
+    margin-right: auto;
+}
+

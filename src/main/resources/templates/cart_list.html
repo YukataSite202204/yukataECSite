@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<!-- Import Materialize CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<!-- Import Font Wesome -->
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+	<!-- icon -->
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico"
+		th:href="@{../img/favicon.ico}" />
+	<link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+	<link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+	<link rel="stylesheet" th:href="@{../css/common.css}" />
+	<link rel="stylesheet" th:href="@{../css/header.css}" />
+	<link rel="stylesheet" th:href="@{../css/footer.css}" />
+	<link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+	<link rel="stylesheet" th:href="@{../css/login.css}" />
+	<link rel="stylesheet" th:href="@{../css/item_list.css}" />
+	<link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+	<link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+	<link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+	<link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+	<link rel="stylesheet" th:href="@{../css/responsive.css}" />
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>ショッピングカート | らくらく浴衣</title>
+</head>
+
+<body>
+	<header>
+		<div th:insert="top :: frag_header"></div>
+	</header>
+	<div class="top-wrapper">
+		<div class="container">
+			<h1 class="page-title">
+				<span class="order-confirm-title">
+					ショッピングカート
+				</span>
+			</h1>
+
+			<div th:styleappend="${nullCartMessage}!=null ? 'display:none'">
+				<!-- table -->
+				<div class="row">
+					<!--sessionｽｺｰﾌﾟのorderItemListを回す-->
+					<div>
+						<table class="striped yellow lighten-5 cart-list-table">
+							<thead>
+								<tr>
+									<th class="cart-table-th">商品名</th>
+									<th class="cart-table-th">価格 (税抜)</th>
+									<th class="cart-table-th">数量</th>
+									<th class="cart-table-th">小計　(税抜)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="orderItem :${session.orderItemList}">
+									<td class="cart-item-name">
+										<div class="cart-item-icon">
+											<img th:src="@{/img/}+${orderItem.item.imagePath}">
+										</div>
+										<span th:text="${orderItem.item.name}">ハワイアンパラダイス</span>
+									</td>
+									<td>
+										<div class="text-center cart-item-name"
+											th:text="${#numbers.formatInteger(orderItem.item.price,2,'COMMA')}+円">
+											価格XXX円
+										</div>
+									</td>
+									<td>
+										<div class="cart-item-name" th:text="${orderItem.quantity}">3個</div>
+									</td>
+									<td>
+										<div class="   cart-item-name"
+											th:text="${#numbers.formatInteger((orderItem.item.price)*(orderItem.quantity),2,'COMMA')}+円">
+											小計XXX円</div>
+									</td>
+									<td>
+										<form th:action="@{/shoppingCart/delete}" method="post">
+											<button class="btn red lighten-3" type="submit">
+												<span>削除</span>
+											</button>
+										　　<input type="hidden" name="id" th:value="${orderItem.id}">
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div th:styleappend="${nullCartMessage}!=null ? 'display:none'">
+				<div class="row cart-total-price">
+					<div>
+						<span class="order-confirm-text">
+							&nbsp;&nbsp;消費税：<span th:text="${#numbers.formatInteger(tax,2,'COMMA')}+円">消費税：8,000円
+							</span>
+						</span>
+					</div>
+					<div>
+						<span class="order-confirm-text">
+							&nbsp;&nbsp;ご注文金額合計：<span
+								th:text="${#numbers.formatInteger(totalPrice,2,'COMMA')}+円">ご注文金額合計：38,000円
+								(税込)</span>
+						</span>
+					</div>
+				</div>
+				<div class="row order-confirm-btn">
+					<form th:action="@{/order/show}">
+						<button class="btn red lighten-3 space" type="submit">
+							<span>注文に進む</span>
+						</button>
+					</form>
+				</div>
+			</div>
+			<span th:if="${nullCartMessage}!=null" th:text="${nullCartMessage}">カートが空です</span>
+			<br>
+			<!-- end container -->
+		</div>
+		<!-- end top-wrapper -->
+	</div>
+
+	<div class="to-page-top">
+		<a href="#page-top"><img src="img/pagetop.png" th:src="@{/img/to_top1.png}" alt=""></a>
+	</div>
+
+	<!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+	<footer>
+		<div th:insert="top :: frag_footer"></div>
+	</footer>
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+
+</html>

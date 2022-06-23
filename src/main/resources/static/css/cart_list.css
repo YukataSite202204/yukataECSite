@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+/* ========================================
+    ショッピングカートページのスタイル
+   ======================================== */
+.cart-table-th {
+  text-align: center;
+}
+.cart-item-icon img {
+  margin: auto;
+  display: block;
+  border-radius: 20px;
+  width: 100px;
+  height: 150px;
+  padding: 0 0 15px 0;
+}
+.cart-item-name {
+  text-align: center;
+  font-size: 18px;
+}
+
+.cart-total-price {
+  font-size: 35px;
+  text-align: center;
+}
+
+.order-confirm-btn {
+  text-align: center;
+}
+
+.top-wrapper{
+	background-color: #FFF3E1;
+}
+
+.cart-list-table{
+	border-radius: 15px;
+	width: 1000px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.space{
+	margin: 20px 0 30px 0;
+}

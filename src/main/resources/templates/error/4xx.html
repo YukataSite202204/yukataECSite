@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!-- Import Materialize CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+<!-- Import Font Wesome -->
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+	rel="stylesheet" />
+	<!-- icon -->
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+<link rel="stylesheet" th:href="@{../../css/common.css}" />
+<link rel="stylesheet" th:href="@{../../css/item_list.css}" />
+<link rel="stylesheet" th:href="@{../../css/header.css}" />
+<link rel="stylesheet" th:href="@{../../css/footer.css}" />
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOT FOUND | らくらく浴衣</title>
+</head>
+<body>
+	<header>
+		<div th:insert="top :: frag_header"></div>
+	</header>
+	<div class="item-wrapper top-wrapper">
+			<h1>NOT FOUND</h1>
+			<h3>お探しのページは見つかりませんでした</h3>
+			<div>削除されているか URLが変更されているため 見つけることが出来ませんでした</div>
+			<br>
+			<br>
+			<form th:action="@{/yukata/top}">
+				<button class="btn red lighten-3" >トップページに戻る</button>
+			</form>
+	</div>
+	<footer>
+		<div th:insert="top :: frag_footer"></div>
+	</footer>
+</body>
+</html>
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Import Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!-- Import Font Wesome -->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet" />
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../static/img/favicon.ico"
+    th:href="@{../img/favicon.ico}" />
+  <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../static/img/favicon.ico" th:href="@{../img/favicon.ico}" />
+  <link rel="stylesheet" th:href="@{../css/common.css}" />
+  <link rel="stylesheet" th:href="@{../css/header.css}" />
+  <link rel="stylesheet" th:href="@{../css/footer.css}" />
+  <link rel="stylesheet" th:href="@{../css/register_admin.css}" />
+  <link rel="stylesheet" th:href="@{../css/login.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/item_detail.css}" />
+  <link rel="stylesheet" th:href="@{../css/cart_list.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_confirm.css}" />
+  <link rel="stylesheet" th:href="@{../css/order_finished.css}" />
+  <link rel="stylesheet" th:href="@{../css/responsive.css}" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>商品詳細 | らくらく浴衣</title>
+</head>
+
+<body>
+  <header>
+    <div th:insert="top :: frag_header"></div>
+  </header>
+
+  <div class="top-wrapper">
+    <div class="container">
+      <h1 class="page-title">
+      <span class="order-confirm-title" th:text="${item.name}" >商品名</span>
+      </h1>
+      <div class="row">
+        <div class="row item-detail">
+          <div class="item-icondetail">
+            <img th:src="@{'/img/'} + ${item.imagePath}" src="img/1.jpg" />
+          </div>
+          <div th:text="${item.description}" class="item-intro">商品説明</div>
+        </div>
+        <div class="row item-size">
+          <div class="item-hedding" th:text="'サイズ：' + ${item.size}">サイズ：フリー</div>
+          <div>
+          <div class="item-hedding">価格</div>
+             <span>
+              <span th:text="${#numbers.formatInteger(item.price * 1.1, 3, 'COMMA') + '円(税込)'}" class="row price intax" id="intax"></span>
+              <span>&nbsp;</span>
+              <span th:text="${#numbers.formatInteger(item.price, 3, 'COMMA') + '円(税抜)'}" class="row price" id="price">金額</span></span>
+              <span id="hiddenPrice" th:text="${item.price}"></span>
+          </div>
+        </div>
+        <form th:action="@{/shoppingCart/inCart}" method="post">
+          <div class="row item-quantity">
+            <div class="item-hedding item-hedding-quantity">数量</div>
+            <div class="item-quantity-selectbox">
+              <div class="input-field col s12">
+                <span class="item-hedding" th:if="${quantityError}" th:text="${quantityError}"
+                  style="color: red">個数選択してください</span>
+                <select class="browser-default" id="selectCount" name="quantity">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="row item-total-price">この商品の合計金額</p>
+          <span class="row item-total-price intax" id="selectIntaxPrice">合計金額（税込）</span>
+          <span class="row item-total-price2" id="selectSumPrice">この商品の合計金額（税抜）</span>
+          <div class="row item-cart-btn">
+            <input type="hidden" th:value="${item.id}" name="itemId">
+            <button class="btn red lighten-3" type="submit" onclick="location.href='cart_list.html'">
+
+              <span>カートに入れる</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end top-wrapper -->
+
+  <!-- ▼ フッターをインクルード。フッターを修正したい場合は、top.htmlを修正ください ▼ -->
+  <footer>
+    <div th:insert="top :: frag_footer"></div>
+  </footer>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script th:src="@{../js/itemDetail.js}" th:inline="javascript"></script>
+</body>
+</html>
