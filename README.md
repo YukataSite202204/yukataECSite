@@ -45,7 +45,7 @@ ER図は下記の通りです。
 ## 実装機能
 <details>
   <summary>サイトマップ</summary>
-  ![サイトマップ](./README.img/sitemap.jpg)
+  ![サイトマップ](./img/sitemap.png)
 </details>
 <details>
   <summary>ユーザー登録・入力値チェック・ログイン・ログアウト機能</summary>
