@@ -34,7 +34,7 @@
 
 ### データベース
 使用したのはPostgeSQLです。  
-「student」という名前のデータベースを作成し、[こちら]()のSQLを実行してください。  
+「student」という名前のデータベースを作成し、[こちら](https://docs.google.com/document/d/1qPmDEEQ5emsmlowiZsx1e-v_p-lIZqphPEnjqm9M5EI/edit)のSQLを実行してください。  
 
 ER図は下記の通りです。  
 <details>
