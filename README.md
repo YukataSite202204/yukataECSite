@@ -45,7 +45,7 @@ ER図は下記の通りです。
 ## 実装機能
 <details>
   <summary>サイトマップ</summary>
-  ![サイトマップ](README.img/sitemap.jpg)
+  ![サイトマップ](https://github.com/YukataSite202204/yukataECSite/blob/main/README.img/sitemap.jpg)
 </details>
 <details>
   <summary>ユーザー登録・入力値チェック・ログイン・ログアウト機能</summary>
