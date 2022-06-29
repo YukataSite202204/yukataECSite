@@ -39,9 +39,9 @@
 ER図は下記の通りです。  
 <details>
   <summary>ER図</summary>
-  
   準備中
 </details>
+
 ## 実装機能
 <details>
   <summary>サイトマップ</summary>
