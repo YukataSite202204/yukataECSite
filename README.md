@@ -23,6 +23,25 @@
 - PostgreSQL
 
 ## セットアップ
+### Javaインストール
+使用したのはopenjdk(18.0.1.1)です。  
+インストールは[こちら](https://jdk.java.net/18/)から。
+
+### Spring Tool Suiteインストール
+使用したのはSpring Tools 4 for Eclipseです。  
+最新バージョンは4.15.1です。  
+インストールは[こちら](https://spring.io/tools)から。
+
+### データベース
+使用したのはPostgeSQLです。  
+「student」という名前のデータベースを作成し、[こちら](https://drive.google.com/file/d/1ZloTuxeZLZUASMjDTP-dgoCbzWMI9vrT/view?usp=sharing)のSQLを実行してください。  
+
+ER図は下記の通りです。  
+<details>
+  <summary>ER図</summary>
+  
+  準備中
+</details>
 ## 実装機能
 <details>
   <summary>サイトマップ</summary>
