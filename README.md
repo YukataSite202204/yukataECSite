@@ -26,5 +26,6 @@
 ## 実装機能
 <details>
   <summary>サイトマップ</summary>
+  準備中
 </details>
-準備中
+
