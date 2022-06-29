@@ -204,7 +204,7 @@ public class OrderController {
 			order.setStatus(2);
 
 			// 以下stripe APIに関する記述
-			Stripe.apiKey = "sk_test_51L7U0DJUEdTQpHI8mBEiaHfA8iUUbqnMndP2dXZ3TRhtjP0UV472yEFu3RWD1r9pguEJFrNlpCCJQXC3XcJMuh6Z00AjI46n8i";
+			Stripe.apiKey = "sk_test_5*********************************************************************";
 			Integer price = order.getTotalPrice();
 
 			Map<String, Object> chargeMap = new HashMap<String, Object>();
