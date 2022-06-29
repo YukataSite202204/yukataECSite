@@ -35,14 +35,14 @@
   <summary>商品検索時のオートコンプリート機能</summary>
 </details>
 <details>
-  <summary></summary>
-</details>
-<details>
-  <summary></summary>
+  <summary>ショッピングカート機能</summary>
 </details>
 <details>
   <summary>注文完了メール送信機能</summary>
 </details>
 <details>
   <summary>外部APIを用いたクレジットカード決済（テスト環境）</summary>
+</details>
+<details>
+  <summary></summary>
 </details>
