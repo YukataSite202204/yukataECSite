@@ -59,11 +59,18 @@ ER図は下記の通りです。
 </details>
 <details>
   <summary>注文完了メール送信機能</summary>
+  
+  注文確認と同時に注文完了メールが自動で送信されるよう設定しました。
+  
+  ![mail](./img/mail.png)
+  
 </details>
 <details>
   <summary>外部APIを用いたクレジットカード決済（テスト環境）</summary>
   
   [stripe](https://stripe.com/jp)  のテスト環境を用いて、クレジットカードでの決済を導入しました。
+  
+  ![credit](./img/creditcard.jpg)
 
 </details>
 <details>
