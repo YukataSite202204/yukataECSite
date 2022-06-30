@@ -61,8 +61,8 @@ ER図は下記の通りです。
 </details>
 <details>
   <summary>外部APIを用いたクレジットカード決済（テスト環境）</summary>
-  [stripe](https://stripe.com/jp)のテスト環境を用いて、クレジットカードでの決済を導入しました。
-  
+  [stripe](https://stripe.com/jp)  のテスト環境を用いて、クレジットカードでの決済を導入しました。
+ 
 </details>
 <details>
   <summary></summary>
