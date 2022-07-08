@@ -56,6 +56,9 @@ ER図は下記の通りです。
 </details>
 <details>
   <summary>ショッピングカート機能</summary>
+  
+  「カートに入れる」ボタンを押すとカートに商品が入り、「削除」ボタンを押すとカートから商品が削除されるように実装しましt。
+
 </details>
 <details>
   <summary>注文完了メール送信機能</summary>
