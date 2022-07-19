@@ -138,7 +138,7 @@ public class ItemController {
 			String calledSource, 
 			Model model
 			) {
-		String name = (String) session.getAttribute("name");
+				// String name = (String) session.getAttribute("name");
 
 		// 現在のページがどこか調べる。nullだったらページングの始まりであるため、"1"をセットする。
 		if (nowPage == null) {
@@ -196,7 +196,9 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("search")) {
-				form.setName((String) session.getAttribute("name"));
+				if (form.getName() == null) {
+					form.setName((String) session.getAttribute("name"));
+				}
 				List<Item> itemList = itemService.findByName(form, intNowpage);
 				if (itemList.size() == 0) {
 					itemList = itemService.findAll(intNowpage);
@@ -206,8 +208,10 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("order")) {
-				form.setName((String) session.getAttribute("name"));
-				form.setOrder((Integer) session.getAttribute("order"));
+				if (form.getOrder() == null) {
+					form.setName((String) session.getAttribute("name"));
+					form.setOrder((Integer) session.getAttribute("order"));
+				}
 				List<Item> itemList = itemService.changeOrder(form, intNowpage);
 				model.addAttribute("itemList", itemList);
 				model.addAttribute("nowPage", intNowpage);
@@ -226,7 +230,9 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("search")) {
-				form.setName((String) session.getAttribute("name"));
+				if (form.getName() == null) {
+					form.setName((String) session.getAttribute("name"));
+				}
 				List<Item> itemList = itemService.findByName(form, intNowpage);
 				if (itemList.size() == 0) {
 					itemList = itemService.findAll(intNowpage);
@@ -236,8 +242,10 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("order")) {
-				form.setName((String) session.getAttribute("name"));
-				form.setOrder((Integer) session.getAttribute("order"));
+				if (form.getOrder() == null) {
+					form.setName((String) session.getAttribute("name"));
+					form.setOrder((Integer) session.getAttribute("order"));
+				}
 				List<Item> itemList = itemService.changeOrder(form, intNowpage);
 				model.addAttribute("itemList", itemList);
 				model.addAttribute("nowPage", intNowpage);
@@ -257,7 +265,9 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("search")) {
-				form.setName((String) session.getAttribute("name"));
+				if (form.getName() == null) {
+					form.setName((String) session.getAttribute("name"));
+				}
 				List<Item> itemList = itemService.findByName(form, intNowpage);
 				if (itemList.size() == 0) {
 					itemList = itemService.findAll(intNowpage);
@@ -267,8 +277,10 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("order")) {
-				form.setName((String) session.getAttribute("name"));
-				form.setOrder((Integer) session.getAttribute("order"));
+				if (form.getOrder().equals(null)) {
+					form.setName((String) session.getAttribute("name"));
+					form.setOrder((Integer) session.getAttribute("order"));
+				}
 				List<Item> itemList = itemService.changeOrder(form, intNowpage);
 				model.addAttribute("itemList", itemList);
 				model.addAttribute("nowPage", intNowpage);
@@ -287,7 +299,9 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("search")) {
-				form.setName((String) session.getAttribute("name"));
+				if (form.getName() == null) {
+					form.setName((String) session.getAttribute("name"));
+				}
 				List<Item> itemList = itemService.findByName(form, intNowpage);
 				if (itemList.size() == 0) {
 					if (form.getName() == null) { // 検索結果クリアボタンを押すとnullが返ってくるため、その場合はセッションのメッセージを削除する
@@ -308,8 +322,10 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("order")) {
-				form.setName((String) session.getAttribute("name"));
-				form.setOrder((Integer) session.getAttribute("order"));
+				if (form.getOrder() == null) {
+					form.setName((String) session.getAttribute("name"));
+					form.setOrder((Integer) session.getAttribute("order"));
+				}
 				List<Item> itemList = itemService.changeOrder(form, intNowpage);
 				model.addAttribute("itemList", itemList);
 				model.addAttribute("nowPage", intNowpage);
