@@ -218,7 +218,8 @@ class ItemControllerTest {
 			Integer intNowPage = 2;
 			MvcResult result = mockMvc
 					.perform(get("/yukata/page").param("nowPage", "1").param("boxFlg", "1")
-							.param("calledSource", "search").param("nextBtnFlg", "1").param("name", form.getName())
+							.param("calledSource", "search").param("nextBtnFlg", "1")
+							.sessionAttr("name", form.getName())
 							.sessionAttr("boxSizeMax", 4).sessionAttr("boxSizeList", boxSizeList(4)))
 					.andExpect(status().isOk()).andExpect(view().name("item_list"))
 					.andExpect(model().attributeExists("itemList"))
@@ -237,7 +238,8 @@ class ItemControllerTest {
 			Integer intNowPage = 1;
 			MvcResult result = mockMvc
 					.perform(get("/yukata/page").param("nowPage", "2").param("boxFlg", "1")
-							.param("calledSource", "search").param("beforeBtnFlg", "1").param("name", form.getName())
+							.param("calledSource", "search").param("beforeBtnFlg", "1")
+							.sessionAttr("name", form.getName())
 							.sessionAttr("boxSizeMax", 4).sessionAttr("boxSizeList", boxSizeList(4)))
 					.andExpect(status().isOk()).andExpect(view().name("item_list"))
 					.andExpect(model().attributeExists("itemList"))
@@ -256,7 +258,7 @@ class ItemControllerTest {
 			Integer intNowPage = 2;
 			MvcResult result = mockMvc
 					.perform(get("/yukata/page").param("nowPage", "1").param("boxFlg", "1")
-							.param("calledSource", "search").param("boxNumber", "2").param("name", form.getName())
+							.param("calledSource", "search").param("boxNumber", "2").sessionAttr("name", form.getName())
 							.sessionAttr("boxSizeMax", 4).sessionAttr("boxSizeList", boxSizeList(4)))
 					.andExpect(status().isOk()).andExpect(view().name("item_list"))
 					.andExpect(model().attributeExists("itemList"))
@@ -562,8 +564,8 @@ class ItemControllerTest {
 			Integer boxsizeMax = 4;
 			Integer intNowPage = 2;
 			MvcResult result = mockMvc
-					.perform(get("/yukata/page").param("calledSource", "order").param("name", form.getName())
-							.param("order", form.getOrder().toString()).param("boxFlg", "1").param("nowPage", "3")
+					.perform(get("/yukata/page").param("calledSource", "order").sessionAttr("name", form.getName())
+							.sessionAttr("order", form.getOrder()).param("boxFlg", "1").param("nowPage", "3")
 							.param("boxNumber", "2").sessionAttr("boxSizeMax", boxsizeMax)
 							.sessionAttr("boxSizeList", boxSizeList(boxsizeMax)))
 					.andExpect(status().isOk()).andExpect(view().name("item_list"))
@@ -664,8 +666,8 @@ class ItemControllerTest {
 			Integer boxsizeMax = 3;
 			Integer intNowPage = 2;
 			MvcResult result = mockMvc
-					.perform(get("/yukata/page").param("calledSource", "order").param("name", form.getName())
-							.param("order", form.getOrder().toString()).param("boxFlg", "1").param("nowPage", "1")
+					.perform(get("/yukata/page").param("calledSource", "order").sessionAttr("name", form.getName())
+							.sessionAttr("order", form.getOrder()).param("boxFlg", "1").param("nowPage", "1")
 							.param("boxNumber", "2").sessionAttr("boxSizeMax", boxsizeMax)
 							.sessionAttr("boxSizeList", boxSizeList(boxsizeMax)))
 					.andExpect(status().isOk()).andExpect(view().name("item_list"))
@@ -693,8 +695,8 @@ class ItemControllerTest {
 			Integer boxsizeMax = 4;
 			Integer intNowPage = 1;
 			MvcResult result = mockMvc
-					.perform(get("/yukata/page").param("calledSource", "order").param("name", form.getName())
-							.param("order", form.getOrder().toString()).sessionAttr("message", "条件にマッチする商品はありません。"))
+					.perform(get("/yukata/page").param("calledSource", "order").sessionAttr("name", form.getName())
+							.sessionAttr("order", form.getOrder()).sessionAttr("message", "条件にマッチする商品はありません。"))
 					.andExpect(status().isOk()).andExpect(view().name("item_list"))
 					.andExpect(request().sessionAttribute("boxSizeMax", boxsizeMax))
 					.andExpect(request().sessionAttribute("boxSizeList", boxSizeList(boxsizeMax)))
@@ -771,8 +773,8 @@ class ItemControllerTest {
 			Integer boxsizeMax = 4;
 			Integer intNowPage = 2;
 			MvcResult result = mockMvc
-					.perform(get("/yukata/page").param("calledSource", "order").param("name", form.getName())
-							.param("order", form.getOrder().toString()).param("boxFlg", "1").param("nowPage", "1")
+					.perform(get("/yukata/page").param("calledSource", "order").sessionAttr("name", form.getName())
+							.sessionAttr("order", form.getOrder()).param("boxFlg", "1").param("nowPage", "1")
 							.param("boxNumber", "2").sessionAttr("boxSizeMax", boxsizeMax)
 							.sessionAttr("boxSizeList", boxSizeList(boxsizeMax))
 							.sessionAttr("message", "条件にマッチする商品はありません。"))
