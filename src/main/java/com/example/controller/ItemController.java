@@ -139,7 +139,6 @@ public class ItemController {
 			Model model
 			) {
 				// String name = (String) session.getAttribute("name");
-
 		// 現在のページがどこか調べる。nullだったらページングの始まりであるため、"1"をセットする。
 		if (nowPage == null) {
 			nowPage = "1";
@@ -265,9 +264,7 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("search")) {
-				if (form.getName() == null) {
 					form.setName((String) session.getAttribute("name"));
-				}
 				List<Item> itemList = itemService.findByName(form, intNowpage);
 				if (itemList.size() == 0) {
 					itemList = itemService.findAll(intNowpage);
@@ -277,10 +274,8 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("order")) {
-				if (form.getOrder().equals(null)) {
 					form.setName((String) session.getAttribute("name"));
 					form.setOrder((Integer) session.getAttribute("order"));
-				}
 				List<Item> itemList = itemService.changeOrder(form, intNowpage);
 				model.addAttribute("itemList", itemList);
 				model.addAttribute("nowPage", intNowpage);
@@ -322,10 +317,8 @@ public class ItemController {
 				model.addAttribute("boxFlg", boxFlg);
 				return "item_list";
 			} else if (calledSource.equals("order")) {
-				if (form.getOrder() == null) {
 					form.setName((String) session.getAttribute("name"));
 					form.setOrder((Integer) session.getAttribute("order"));
-				}
 				List<Item> itemList = itemService.changeOrder(form, intNowpage);
 				model.addAttribute("itemList", itemList);
 				model.addAttribute("nowPage", intNowpage);
